@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">NotesApp</h1>
+<h5 align="center">Welcome, {{current_user}}!</h5>
+<form method="GET">
+  <input type="text" name="search-area" value="{{search_input}}">
+  <input type="submit" value="Search">
+</form>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <label for="note">Title:</label>
+  <textarea name="note" id="note" class="form-control"></textarea >
+  <label for="note.description">Description:</label>
+  <textarea name="note" id="note.description" class="form-control"></textarea>
+
+
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+{% endblock %}
